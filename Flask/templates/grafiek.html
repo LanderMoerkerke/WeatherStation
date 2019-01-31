@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% block title %}
+    Grafiek
+{% endblock %}
+
+{% block head %}
+
+    <script src="{{ url_for("static",filename="bower_components/amcharts3/amcharts/amcharts.js") }}"></script>
+    <script src="{{ url_for("static",filename="bower_components/amcharts3/amcharts/lang/nl.js") }}"></script>
+
+    <script src="{{ url_for("static",filename="bower_components/amcharts3/amcharts/themes/light.js") }}"></script>
+    <script src="{{ url_for("static",filename="bower_components/amcharts3/amcharts/serial.js") }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for("static",filename="bower_components/amcharts3/amcharts/plugins/export/export.css") }}">
+    <script src="{{ url_for("static",filename="bower_components/amcharts3/amcharts/plugins/export/export.min.js") }}"></script>
+{% endblock %}
+
+{% block gegevens %}
+    class="current"
+{% endblock %}
+
+{% block body %}
+    <h1>Grafiekpagina</h1>
+    <div id="grafiek" style="width: 100%; height: 600px;"></div>
+
+    <script>
+        var chartData = generateChartData();
+        var chart = AmCharts.makeChart("grafiek", {
+            "type": "serial",
+            "theme": "light",
+            "legend": {
+                "useGraphSettings": true
+            },
+            "dataProvider": chartData,
+            "synchronizeGrid":true,
+            "valueAxes": [{
+                "id":"v1",
+                "axisColor": "#FF6600",
+                "axisThickness": 2,
+                "axisAlpha": 1,
+                "position": "left"
+            }, {
+                "id":"v2",
+                "axisColor": "#406efc",
+                "axisThickness": 2,
+                "axisAlpha": 1,
+                "position": "right"
+            }, {
+                "id":"v3",
+                "axisColor": "#B0DE09",
+                "axisThickness": 2,
+                "gridAlpha": 0,
+                "offset": 50,
+                "axisAlpha": 1,
+                "position": "left"
+            }, {
+                "id":"v4",
+                "axisColor": "#de66d4",
+                "axisThickness": 2,
+                "gridAlpha": 0,
+                "offset": 50,
+                "axisAlpha": 1,
+                "position": "right"
+            }],
+            "graphs": [{
+                "valueAxis": "v1",
+                "lineColor": "#FF6600",
+                "bullet": "round",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "temperatuur (°C)",
+                "valueField": "temperatuur",
+                "fillAlphas": 0
+            }, {
+                "valueAxis": "v2",
+                "lineColor": "#406efc",
+                "bullet": "square",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "vochtigheid (%)",
+                "valueField": "vochtigheid",
+                "fillAlphas": 0
+            }, {
+                "valueAxis": "v3",
+                "lineColor": "#B0DE09",
+                "bullet": "triangleUp",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "luchtdruk (hPa)",
+                "valueField": "luchtdruk",
+                "fillAlphas": 0
+            }, {
+                "valueAxis": "v4",
+                "lineColor": "#de66d4",
+                "bullet": "square",
+                "bulletBorderThickness": 1,
+                "hideBulletsCount": 30,
+                "title": "windsnelheid (km/u)",
+                "valueField": "windsnelheid",
+                "fillAlphas": 0
+            }],
+            "chartScrollbar": {},
+            "chartCursor": {
+                "cursorPosition": "mouse"
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "parseDates": true,
+                "axisColor": "#DADADA",
+                "minorGridEnabled": true
+            },
+            "export": {
+                "enabled": true,
+                "position": "bottom-right"
+             }
+        });
+
+        chart.addListener("dataUpdated", zoomChart);
+        zoomChart();
+
+        // generate some random data, quite different range
+        function generateChartData() {
+            var chartData = [];
+
+            {% for gegeven in gegevens %}
+                var newDate = new Date('{{ gegeven[0] }}');
+
+                var temperatuur = {{ gegeven[1]|round(2) }};
+                var vochtigheid = {{ gegeven[2]|round(2) }};
+                var luchtdruk = {{ gegeven[3]|round(2) }};
+                var windsnelheid = {{ gegeven[4]|round(2) }};
+
+                chartData.push({
+                    date: newDate,
+                    temperatuur: temperatuur,
+                    vochtigheid: vochtigheid,
+                    luchtdruk: luchtdruk,
+                    windsnelheid: windsnelheid
+                });
+            {% endfor %}
+            return chartData;
+        }
+
+        function zoomChart(){
+            chart.zoomToIndexes(chart.dataProvider.length - 20, chart.dataProvider.length - 1);
+        }
+    </script>
+{% endblock %}

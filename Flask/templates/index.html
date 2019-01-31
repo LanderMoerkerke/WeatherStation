@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body %}
+    <h1>Weather Station</h1>
+    <form action="" method="POST" id="inlogForm">
+        <h2>Login</h2>
+        {{ macros.inputVeld("text", "Username", "username", request.form.username, 'Username') }}
+        {{ macros.inputVeld("password", "Password", "password", request.form.password, 'Password') }}
+        <div class="knop">
+            {{ macros.formButton('inlogForm', "Login") }}
+        </div>
+    </form>
+
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+{% endblock %}

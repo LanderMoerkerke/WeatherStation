@@ -1,0 +1,85 @@
+{% import "macros/macros.html" as macros %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %} | Weather Station</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="author" content="Lander Moerkerke">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {# favicon #}
+    <link rel="shortcut icon" type="image/png" href="{{ url_for("static",filename="images/favicon.png") }}"/>
+
+    {# jQuery #}
+    <script src="{{ url_for("static",filename="bower_components/jquery/dist/jquery.js") }}"></script>
+
+    {# Bootstrap #}
+    <link rel="stylesheet" href="{{ url_for("static",filename="bower_components/bootstrap/less/bootstrap.less") }}">
+    <link rel="stylesheet"
+          href="{{ url_for("static",filename="bower_components/bootstrap/dist/css/bootstrap.min.css") }}">
+    <script src="{{ url_for("static",filename="bower_components/bootstrap/dist/js/bootstrap.js") }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/styles.css") }}">
+
+    {% block head %}{% endblock %}
+
+
+</head>
+<body>
+<header>
+    <a href="{{ url_for('homepage') }}" id="logo"></a>
+    <nav>
+        <ul>
+            <li><a {% block homepage %}{% endblock %} href="{{ url_for('homepage') }}">Home</a></li>
+            <li><a {% block gegevens %}{% endblock %} href="{{ url_for('gegevens') }}">Weerdata</a></li>
+            <li><a {% block zoeken %}{% endblock %} href="{{ url_for('zoeken') }}">Weerdata zoeken</a></li>
+            <li><a {% block instellingen %}{% endblock %} href="{{ url_for('instellingen') }}">Instellingen</a></li>
+            <li><a href="{{ url_for('logout') }}">Afmelden</a></li>
+        </ul>
+    </nav>
+</header>
+<section>
+    {% block body %}
+
+    {% endblock %}
+</section>
+<footer class="footer-distributed">
+    <div class="footer-right">
+        <span>New Media and Communication Technology</span>
+        <address>
+            Howest Kortrijk campus Graaf Karel de Goedelaan 5, 8500 Kortrijk
+        </address>
+    </div>
+    <div class="footer-left">
+        <p class="footer-links">
+            <a {{ self.homepage() }} href="{{ url_for('homepage') }}">Home</a>
+            <a {{ self.gegevens() }} href="{{ url_for('gegevens') }}">Weerdata</a>
+            <a {{ self.zoeken() }} href="{{ url_for('zoeken') }}">Weerdata zoeken</a>
+            <a {{ self.instellingen() }} href="{{ url_for('instellingen') }}">Instellingen</a>
+        </p>
+        <p>Moerkerke Lander &copy; 2017</p>
+    </div>
+</footer>
+<script>
+    $("header").css("background", "#{{ kleurcode }}");
+    $("h1").css("color", "#{{ kleurcode }}");
+    $("button").css("background", "#{{ kleurcode }}");
+    $("th.headerSortDown").css("background", "#{{ kleurcode }}");
+    $("th.headerSortUp").css("background", "#{{ kleurcode }}");
+</script>
+<script>
+    function changeCSS(cssFile, cssLinkIndex) {
+
+        var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
+        var newlink = document.createElement("link");
+        newlink.setAttribute("rel", "stylesheet");
+        newlink.setAttribute("type", "text/css");
+        newlink.setAttribute("href", cssFile);
+
+        document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+    }
+</script>
+
+</body>
+</html>

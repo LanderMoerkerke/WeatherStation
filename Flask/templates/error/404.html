@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ error }}
+{% endblock %}
+
+{% block body %}
+    <h1>404</h1>
+    <p>U bent eventjes de weg kwijt... Ga terug naar de {{ macros.buildLink('homepage','homepage') }}</p>
+{% endblock %}

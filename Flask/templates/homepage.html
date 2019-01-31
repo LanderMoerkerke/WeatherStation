@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}
+    Home
+{% endblock %}
+
+{% block homepage %}
+    class="current"
+{% endblock %}
+
+{% block body %}
+    <h1>Welkom {{ username }}!</h1>
+
+    <h2>Weerstations</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Plaats</th>
+            <th>Datum laatst actief</th>
+            <th> Tijd laatst actief</th>
+            <th>Momenteel actief?</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for gegevens in gegevensWeerstation %}
+            <tr>
+                <td>{{ gegevens[1] }}</td>
+                <td>{{ gegevens[2] }}</td>
+                <td>{{ gegevens[3] }}</td>
+                <td>{{ gegevens[4] }}</td>
+                <td>{{ gegevens[5] }}</td>
+                <td>
+                    {# Als weerstation uit staat --> activeer #}
+                    {% if gegevens[5] == 'Neen' %}
+                        <a href="{{ url_for('activeerweerstation', weerstationID=gegevens[0]) }}">
+                            <button type="submit" name="{{ gegevens[0] }}" value="{{ gegevens[0] }}">Activeer</button>
+                        </a>
+                        {# Als weerstation aan staat --> deactiveer #}
+                    {% else %}
+                        <a href="{{ url_for('deactiveerweerstation', weerstationID=gegevens[0]) }}">
+                            <button type="submit" name="{{ gegevens[0] }}" value="{{ gegevens[0] }}">Deactiveer</button>
+                        </a>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Laatste dag dat er gegevens werden opgehaald:</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Meting</th>
+            <th>Gemiddelde waarde</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Datum</td>
+            <td>{{ gegevensData[0] }}</td>
+        </tr>
+        <tr>
+            <td>Temperatuur</td>
+            <td>{{ gegevensData[1]|round(2) }} °C</td>
+        </tr>
+        <tr>
+            <td>Vochtigheid</td>
+            <td>{{ gegevensData[2]|round(2) }} %</td>
+        </tr>
+        <tr>
+            <td>Luchtdruk</td>
+            <td>{{ gegevensData[3]|round(2) }} hPa</td>
+        </tr>
+        <tr>
+            <td>Windsnelheid</td>
+            <td>{{ gegevensData[4]|round(2) }} km/u</td>
+        </tr>
+        <tr>
+            <td>Lichtinval</td>
+            <td>{{ gegevensData[5]|round(2) }} %</td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

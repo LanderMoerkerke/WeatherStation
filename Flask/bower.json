@@ -1,0 +1,29 @@
+{
+  "name": "Flask",
+  "authors": [
+    "LanderMoerkerke <lander.moerkerke@telenet.be>"
+  ],
+  "description": "Website Project I",
+  "main": "Flask.py",
+  "keywords": [
+    "python",
+    "jinja"
+  ],
+  "license": "MIT",
+  "homepage": "templates/index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "amcharts3": "^3.21.2",
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.2.1",
+    "bootstrap-daterangepicker": "^2.1.25",
+    "tablesorter": "*"
+  }
+}

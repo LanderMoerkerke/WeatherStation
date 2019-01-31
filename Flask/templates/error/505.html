@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ error }}
+{% endblock %}
+
+{% block body %}
+    <h1>505</h1>
+    <p>Er heeft zich een ernstig probleem voorgedaan... Ga terug naar
+        de {{ macros.buildLink('homepage','homepage') }}</p>
+{% endblock %}

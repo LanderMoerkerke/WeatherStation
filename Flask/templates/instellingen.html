@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}
+    Instellingen
+{% endblock %}
+
+{% block instellingen %}
+    class="current"
+{% endblock %}
+
+{% block body %}
+
+    <form action="" method="POST" name="instellingsForm" id="instellingsForm">
+        <div class="instellingen">
+            <h1>Instellingen</h1>
+            <h2>Gebruikersinstellingen</h2>
+            {% if informatieWachtwoord %}
+                <p>{{ informatieWachtwoord }}</p>
+            {% endif %}
+            <ul>
+                <li>Wachtwoord wijzigen</li>
+                <li>
+                    <ul>
+                        <li>{{ macros.inputVeld("password", "Oud wachtwoord", "oudwachtwoord", request.form.old, 'Oud wachtwoord') }}</li>
+                        <li>{{ macros.inputVeld("password", "Nieuw wachtwoord", "nieuwwachtwoord", request.form.new, 'Nieuw wachtwoord') }}</li>
+                        <li>{{ macros.inputVeld("password", "Bevestig wachtwoord", "bevestigwachtwoord", request.form.new, 'Bevestig het wachtwoord') }}</li>
+                    </ul>
+                </li>
+                {#                <li>Meldingen</li>#}
+                {#                <li>#}
+                {#                    <ul>#}
+                {#                        <li><a href="">Ga verder naar de meldingspagina</a></li>#}
+                {#                    </ul>#}
+                {#                </li>#}
+            </ul>
+
+            <h2>Visuele instellingen</h2>
+            {% if informatieKleuren %}
+                <p>{{ informatieKleuren }}</p>
+            {% endif %}
+            <ul>
+                <li>Accentkleur wijzigen</li>
+                <li>
+                    <ol>
+                        <li>Kleur</li>
+                        <li>
+                            <select class="form-control" name="kleuren" id="kleuren" title="Selecteer een kleur...">
+                                <option value="" disabled selected>Selecteer een kleur</option>
+                                {{ macros.option(kleuren) }}
+                            </select>
+                        </li>
+                    </ol>
+                </li>
+            </ul>
+            {{ macros.formButton('instellingsForm', 'Instellingen opslaan') }}
+        </div>
+
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#wachtwoordWijzigen").click(function () {
+                $('#wachtwoord').show();
+                $('#wachtwoord').style('ul', 'display', 'block');
+
+            });
+        });
+    </script>
+{% endblock %}

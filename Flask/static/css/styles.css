@@ -1,0 +1,514 @@
+/*RESET CSS*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*MAIN*/
+body {
+    font-size: 1.05em;
+    line-height: 1.25em;
+    font-family: Lato, Arial, Helvetica, sans-serif;
+    background: #f9f9f9;
+    color: #555;
+}
+
+a {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #444;
+}
+
+img {
+    width: 100%;
+}
+
+/*NAV*/
+
+header {
+    /*background: #E44B00;*/
+    background: white;
+    width: 100%;
+    height: 76px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+#logo {
+    margin: 20px;
+    float: left;
+    width: 250px;
+    height: 40px;
+    background: url(../images/logo_white.png) no-repeat center;
+    display: block;
+}
+
+nav {
+    float: right;
+    padding: 20px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    float: left;
+    padding: 10px
+
+}
+
+.current {
+    /*color: #6b1201;*/
+    color: black;
+    font-weight: bold;
+
+}
+
+/*CONTENT*/
+
+section {
+    overflow: hidden;
+    margin: 80px auto 40px;
+    max-width: 980px;
+    position: relative;
+    padding: 20px 20px 20px 20px;
+}
+
+/*INSTELLINGEN*/
+.instellingen {
+    overflow: hidden;
+}
+.instellingen > ul > li {
+    display: block;
+    float: none;
+}
+
+.instellingen > ul > li > a {
+    color: black;
+}
+
+.instellingen > ul > li > ul > li {
+    display: block;
+    color: black;
+    float: none;
+    margin-left: 50px;
+}
+
+.instellingen > ul > li > ul > li > a {
+    color: inherit;
+}
+
+.instellingen input {
+    width: 50%;
+}
+
+.instellingen > ul > li > ol {
+    margin-left: 50px;
+}
+
+.instellingen select {
+    width: 200px;
+}
+
+.instellingen > button {
+    float: right;
+    margin-top: 50px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #E44B00;
+    line-height: 1.15em;
+    margin: 20px 0;
+}
+
+p {
+    line-height: 1.45em;
+    margin-bottom: 20px;
+}
+
+/*INLOGFORM*/
+#inlogForm {
+    width: 50%;
+    margin: 30px auto;
+}
+
+form > div.knop > button {
+    width: 100%;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 1.56em;
+    margin: 40px 0 30px 0;
+}
+
+/*TABLE*/
+
+.row {
+    padding: 0.5em;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    margin: 50px 0;
+}
+
+table tr th {
+    padding: 0.5em;
+    text-align: left;
+    background-color: #aaa;
+    color: #fff;
+}
+
+table tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+table tr td {
+    padding: 0.5em;
+    text-align: left;
+}
+
+/*gesorteerd, gegevens*/
+th.header {
+    background-image: url(../images/bg.gif);
+    cursor: pointer;
+    font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: center left;
+    padding-left: 20px;
+    border-right: 1px solid #dad9c7;
+    margin-left: -1px;
+}
+
+th.headerSortUp {
+    background-image: url(../images/asc.gif);
+    background-color: #e44b00;
+}
+
+th.headerSortDown {
+    background-image: url(../images/desc.gif);
+    background-color: #e44b00;
+}
+
+
+
+
+
+/*BUTTONS*/
+
+.btn {
+    padding: 1em 2.1em 1.1em;
+    border-radius: 3px;
+    margin: 8px 8px 8px 8px;
+    /*color: #fbdedb;*/
+    /*background-color: #fbdedb;*/
+    display: inline-block;
+    /*background: #e74c3c;*/
+    background: white;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: .85em;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    -webkit-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0em -0.3rem 0em rgba(0, 0, 0, 0.1) inset;
+    position: relative;
+}
+
+.btn:hover, .btn:focus {
+    opacity: 0.8;
+}
+
+.btn:active {
+    -webkit-transform: scale(0.80);
+    -moz-transform: scale(0.80);
+    -ms-transform: scale(0.80);
+    -o-transform: scale(0.80);
+    transform: scale(0.80);
+}
+
+.btn.block {
+    display: block !important;
+}
+
+.btn.circular {
+    border-radius: 50em !important;
+}
+
+.red {
+    color: white;
+    background-color: #d55050;
+}
+
+.teal {
+    color: white;
+    background-color: #50d5a1;
+}
+
+.green {
+    color: white;
+    background-color: #4caf50;
+}
+
+.blue {
+    background-color: #4586df;
+    color: white;
+}
+
+.orange {
+    color: white;
+    background-color: #e96633;
+}
+
+.knopGegevens > li {
+    float: right;
+    margin-bottom: 20px;
+}
+
+/*HOMEPAGE*/
+thead > tr > td > button {
+    width: 100%;
+}
+
+/*ACTIVEERWEERSTATION*/
+.redirectHome {
+    /*float: right;*/
+    margin: 50px 0px;
+}
+
+section > div > p {
+
+}
+
+section > p > a {
+    color: black;
+}
+
+section > div > p > a {
+    color: black;
+}
+
+a > button {
+    color: black;
+    padding: 5px 20px;
+}
+
+/*FOOTER*/
+section {
+    padding-bottom: 150px;
+}
+
+.footer-distributed {
+    background-color: #292c2f;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 14px sans-serif;
+    padding: 20px 80px;
+    margin-top: 80px;
+
+    position: fixed;
+    bottom: 0px;
+
+    /*position: fixed;*/
+    /*bottom: 0;*/
+    /*height: 150px;*/
+
+}
+
+.footer-distributed .footer-left p {
+    color: #8f9296;
+    font-size: 12px;
+    margin: 0;
+}
+
+.footer-distributed p.footer-links {
+    font-size: 14px;
+    font-weight: normal;
+    color: #ffffff;
+    margin: 0 10px 10px 0;
+    padding: 0;
+}
+
+.footer-distributed p.footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+    padding-right: 10px;
+}
+
+.footer-distributed .footer-right {
+    float: right;
+    margin-top: 6px;
+    /*max-width: 180px;*/
+    max-width: 350px;
+}
+
+.footer-distributed .footer-right span {
+    color: white;
+}
+
+.footer-distributed .footer-right address {
+    margin-top: 10px;
+}
+
+.footer-distributed .footer-right a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-left: 3px;
+}
+
+/*SETTINGS*/
+.colorSetting {
+    background-color: #e44b00;
+}
+
+
+/*MEDIA QUERY = RESPONSIVE AANPASSINGEN*/
+@media only screen and (max-width: 740px) {
+    header {
+        position: relative;
+    }
+
+    nav {
+        width: 100%;
+        padding: 0px;
+    }
+
+    nav ul {
+        display: block;
+        position: relative;
+        background: #FFF;
+        width: 100%;
+    }
+
+    nav li {
+        text-align: center;
+        width: 100%;
+        margin-bottom: 4px;
+        padding: 10px 0px;
+        background: #CCC;
+    }
+
+    img {
+        margin-top: 20px;
+    }
+
+    /*INLOGFORM*/
+    #inlogForm {
+        width: 100%;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: block;
+    }
+
+    table tr td {
+        border-bottom: none;
+        display: block;
+        padding: 0 0.5em;
+    }
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-right {
+        text-align: center;
+    }
+
+    .footer-distributed .footer-right {
+        float: none;
+        margin: 0 auto 20px;
+    }
+
+    .footer-distributed .footer-left p.footer-links {
+        line-height: 1.8;
+    }
+
+    div.instellingen input {
+        width: 100%;
+        color: green;
+    }
+
+    .instellingen > ul > li > ul > li {
+        margin-left: 0px;
+    }
+
+    .instellingen > ul > li > ol {
+        margin-left: 0px;
+    }
+
+    .instellingen > button {
+        width: 75%;
+        margin: 20px auto;
+    }
+}
+
+	

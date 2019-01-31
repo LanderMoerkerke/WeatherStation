@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}
+    Weerdata
+{% endblock %}
+
+{% block head %}
+    <script src="{{ url_for("static",filename="bower_components/tablesorter/jquery.tablesorter.min.js") }}"></script>
+    {#    <link rel="stylesheet" href="{{ url_for("static",filename="bower_components/tablesorter/addons/pager/jquery.tablesorter.pager.css") }}" type="text/css">#}
+    {#    <script src="{{ url_for("static",filename="bower_components/tablesorter/addons/pager/jquery.tablesorter.pager.js") }}"></script>#}
+{% endblock %}
+
+{% block zoeken %}
+    {% if gezocht == True %}
+        class="current"
+    {% endif %}
+{% endblock %}
+
+{% block gegevens %}
+    {% if gezocht == False %}
+        class="current"
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+    <h1>Weerdata</h1>
+    {% if gezocht %}
+        <h2>Gegevens van {{ bar['start'] }} tot en met {{ bar['eind'] }}</h2>
+    {% endif %}
+
+
+    {% if gegevens['gegevens']|length != 0 %}
+        <ul class="knopGegevens">
+            <li>{{ macros.button('blue', 1, url_for('gegevensGrafiek'), 'Grafiek') }}</li>
+        </ul>
+    {% endif %}
+
+    {% if gezocht %}
+        {{ macros.toonGegevens(gegevens) }}
+    {% else %}
+        {{ macros.toonGegevens(gegevens['gegevens']) }}
+    {% endif %}
+
+    <script>
+        $(document).ready(function () {
+                $("#gegevens").tablesorter();
+            }
+        );
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+    Deactiveer weerstation
+{% endblock %}
+
+{% block body %}
+    {#  id = -1 --> Er is iets foutgelopen, het weerstation is niet gestart  #}
+    <h1>Weerstation '{{ weerstation[0] }}' is gedeactiveerd</h1>
+    {% if error %}
+        <h2>Error: {{ error }}</h2>
+    {% endif %}
+    <div class="redirectHome">
+        <p>Klik <a href="{{ url_for('homepage') }}">hier</a> om terug te keren naar de homepagina.</p>
+    </div>
+{% endblock %}

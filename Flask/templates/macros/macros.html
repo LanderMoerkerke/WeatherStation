@@ -1,0 +1,97 @@
+{% macro toonSectiesGegevens(dict) %}
+    <h1>{{ dict['weken'] }}</h1>
+    {% for jaar in dict['jaren'] %}
+        <h1>{{ jaar }}</h1>
+        {% for week in dict['weken'] %}
+            <h2>Week {{ week[0] }}</h2>
+            {% for dag in dict['dagen'] %}
+                <h3>{{ dag[0] }}</h3>
+                {% for gegevens in dict['gegevens'] %}
+                    {% if (gegevens[8] == dag[0] and gegevens[9] == week[0]) %}
+                        <p>{{ gegevens[8] }}</p>
+                        <p>{{ gegevens[9] }}</p>
+                    {% endif %}
+                {% endfor %}
+{#                {{ toonGegevens(dict['gegevens']) }}#}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+{% endmacro %}
+
+{% macro toonTabel(dict) %}
+    {% for gegeven in dict['gegevens'] %}
+
+    {% endfor %}
+
+{% endmacro %}
+
+
+{% macro toonGegevens(gegevens) %}
+    <table id="gegevens" class="tablesorter">
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Temperatuur (°C)</th>
+            <th>Vochtigheid (%)</th>
+            <th>Luchtdruk (hPa)</th>
+            <th>Windsnelheid (km/u)</th>
+            <th>Lichtinval (%)</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if gegevens|length == 0 %}
+            <tr>
+                <td colspan="6">Er zijn geen gegevens beschikbaar</td>
+            </tr>
+        {% else %}
+            {% for record in gegevens %}
+            <tr>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[4] }}</td>
+                <td>{{ record[5] }}</td>
+                <td>{{ record[6] }}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+
+        </tbody>
+    </table>
+{% endmacro %}
+
+
+{% macro buttons() %}
+    <a href="#" class="btn red">Red</a>
+    <a href="#fakeLink" class="btn orange">Orange</a>
+    <a href="#fakeLink" class="btn blue circular">Blue</a>
+    <a href="#fakeLink" class="btn teal circular">Teal</a>
+{% endmacro %}
+
+{% macro button(color, rounded, link, tekst)  %}
+        <a href="{{ link }}"
+           class="btn {{ color }} {% if rounded == 1 %}circular{% endif %}"
+        >{{ tekst }}</a>
+{% endmacro %}
+
+{% macro formButton(form, value)  %}
+    <button type="submit" class="btn colorSetting" form="{{ form }}" value="{{ value }}">{{ value }}</button>
+{% endmacro %}
+
+{% macro inputVeld(type, placeholder, name, value, label) %}
+    <div class="form-group">
+        <label for="{{ name }}">{{ label }}</label>
+        <input type="{{ type }}" class="form-control" name="{{ name }}" placeholder="{{ placeholder }}"
+               value="{{ value }}">
+    </div>
+{% endmacro %}
+
+{% macro option(listInList) %}
+    {% for list in listInList %}
+        <option value="{{ list[0] }}">{{ list[1]|title }}</option>
+    {% endfor %}
+{% endmacro %}
+
+{% macro buildLink(url,tekst) %}
+    <a href="{{ url_for(url) }}">{{ tekst }}</a>
+{% endmacro %}
